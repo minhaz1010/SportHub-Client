@@ -2,6 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import ErrorElement from "../components/ErrorElement/ErrorElement";
 import Home from "../pages/Home";
+import About from "@/pages/About";
+import AllProducts from "@/pages/AllProducts";
+import ManageProducts from "@/pages/ManageProducts";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +16,18 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path:"/about",
+        element:<About/>
+      },
+      {
+        path:"/all-products",
+        element:<AllProducts/>
+      },
+      {
+        path:"/manage-products",
+        element:<ManageProducts/>
+      }
     ],
   },
 ]);

@@ -1,5 +1,9 @@
+import ResponsiveCarousel from "@/components/Home/ResponsiveCarousel";
+
 function Home() {
-  return <div>Home</div>;
+  return <div>
+   <ResponsiveCarousel/>
+  </div>;
 }
 
 export default Home;

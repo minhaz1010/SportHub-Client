@@ -1,8 +1,13 @@
+import LargeNavBar from "./LargeNavBar";
+import SmallNavBar from "./SmallNavbar";
 
 function Navbar() {
   return (
-    <div>Navbar</div>
-  )
+    <>
+      <LargeNavBar />
+      <SmallNavBar />
+    </>
+  );
 }
 
-export default Navbar
+export default Navbar;

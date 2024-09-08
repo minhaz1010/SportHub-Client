@@ -3,20 +3,19 @@ import MainLayout from "../layouts/MainLayout";
 import ErrorElement from "../components/ErrorElement/ErrorElement";
 import Home from "../pages/Home";
 
-
-const router  = createBrowserRouter([
+const router = createBrowserRouter([
   {
-    path:"/",
-    element:<MainLayout/>,
-    errorElement:<ErrorElement/>,
-    children:[
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <ErrorElement />,
+    children: [
       {
-        path:"/",
-        element:<Home/>
-      }
-    ]
-  }
-])
+        path: "/",
+        element: <Home />,
+      },
+    ],
+  },
+]);
 
-const AppRoutes = () => <RouterProvider router={router} />
-export default AppRoutes
+const AppRoutes = () => <RouterProvider router={router} />;
+export default AppRoutes;

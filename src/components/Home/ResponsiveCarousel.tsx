@@ -4,6 +4,10 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
+import basketBall from "../../assets/basketball.jpg"
+import golf from "../../assets/golf.jpg"
+import tennis from "../../assets/tennis.webp"
+
 
 interface SlideData {
   id: number;
@@ -15,20 +19,19 @@ interface SlideData {
 const slides: SlideData[] = [
   {
     id: 1,
-    imageUrl: "https://clipart-library.com/images/pcodbRjri.jpg",
+    imageUrl: basketBall,
     title: "Welcome to Our Store",
     description: "Discover amazing products at great prices",
   },
   {
     id: 2,
-    imageUrl:
-      "https://c0.wallpaperflare.com/preview/438/719/595/photo-of-man-swinging-golf-driver.jpg",
+    imageUrl:golf,
     title: "New Arrivals",
     description: "Check out our latest collection",
   },
   {
     id: 3,
-    imageUrl: "https://wallpapercave.com/wp/wp3499822.jpg",
+    imageUrl: tennis,
     title: "Special Offers",
     description: "Limited time deals you don't want to miss",
   },

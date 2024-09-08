@@ -8,7 +8,7 @@ interface Props {
 
 const Description: React.FC<Props> = ({ message }) => {
   return (
-    <section className="flex flex-col my-7  justify-center items-center">
+    <section className="flex flex-col mb-7  justify-center items-center">
       <img
         src={featuredImage}
         alt="featured-image"

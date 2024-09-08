@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        protest:['Protest Guerrilla','sans-serif'],
+        handjet:['Handjet','sans-serif']
+      }
+    },
   },
   plugins: [],
 }

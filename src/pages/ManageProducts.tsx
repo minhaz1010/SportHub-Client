@@ -1,8 +1,5 @@
-
 function ManageProducts() {
-  return (
-    <div>ManageProducts</div>
-  )
+  return <div>ManageProducts</div>;
 }
 
-export default ManageProducts
+export default ManageProducts;

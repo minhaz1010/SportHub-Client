@@ -1,8 +1,5 @@
-
 function AllProducts() {
-  return (
-    <div>AllProducts</div>
-  )
+  return <div>AllProducts</div>;
 }
 
-export default AllProducts
+export default AllProducts;

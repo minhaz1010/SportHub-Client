@@ -17,17 +17,17 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path:"/about",
-        element:<About/>
+        path: "/about",
+        element: <About />,
       },
       {
-        path:"/all-products",
-        element:<AllProducts/>
+        path: "/all-products",
+        element: <AllProducts />,
       },
       {
-        path:"/manage-products",
-        element:<ManageProducts/>
-      }
+        path: "/manage-products",
+        element: <ManageProducts />,
+      },
     ],
   },
 ]);

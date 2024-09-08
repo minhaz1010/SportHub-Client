@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
-
 const categories = [
   { label: "Basketball", emoji: "🏀" },
   { label: "Cricket", emoji: "🏏" },
@@ -22,8 +20,12 @@ const FeaturedCategories: React.FC = () => {
               to="all-products"
               className="flex flex-col items-center p-4 h-48 justify-center teko bg-white shadow-lg rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out"
             >
-              <span className="text-5xl md:text-7xl mb-2">{category.emoji}</span>
-              <span className="text-3xl md:text-5xl font-semibold">{category.label}</span>
+              <span className="text-5xl md:text-7xl mb-2">
+                {category.emoji}
+              </span>
+              <span className="text-3xl md:text-5xl font-semibold">
+                {category.label}
+              </span>
             </Link>
           ))}
         </div>

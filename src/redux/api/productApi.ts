@@ -3,16 +3,15 @@
 import { TData, TError, TResponse } from "@/types";
 import { baseApi } from "./baseApi";
 
-
 const transformErrorResponse = (response: TError): TResponse => ({
   error: {
     data: {
       success: response.data.success,
       message: response.data.message,
-      errorMessages: response.data.errorMessages
+      errorMessages: response.data.errorMessages,
     },
-    status: response.status
-  }
+    status: response.status,
+  },
 });
 
 const transformSuccessResponse = <T>(response: TData<T>) => ({
@@ -20,13 +19,9 @@ const transformSuccessResponse = <T>(response: TData<T>) => ({
     success: response.success,
     statusCode: response.statusCode,
     message: response.message,
-    data:response.data
-  }
+    data: response.data,
+  },
 });
-
-
-
-
 
 export const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -34,12 +29,13 @@ export const productApi = baseApi.injectEndpoints({
       query: () => {
         return {
           url: "/products",
-          method: "GET"
+          method: "GET",
         };
       },
-      transformResponse: (response: TData<any>) => transformSuccessResponse(response),
-    })
-  })
+      transformResponse: (response: TData<any>) =>
+        transformSuccessResponse(response),
+    }),
+  }),
 });
 
 export const { useGetAllProductsQuery } = productApi;

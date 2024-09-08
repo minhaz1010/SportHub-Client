@@ -1,5 +1,5 @@
 import Description from "@/components/Description/Description";
-import DemoProducts from "@/components/Home/DemoProducts";
+import DemoProducts from "@/components/Home/FeaturedProducts";
 import FeaturedCategories from "@/components/Home/FeaturedCategories";
 import ResponsiveCarousel from "@/components/Home/ResponsiveCarousel";
 
@@ -9,7 +9,7 @@ function Home() {
       <ResponsiveCarousel />
       <Description message="featured categories" />
       <FeaturedCategories />
-      <DemoProducts/>
+      <DemoProducts />
     </div>
   );
 }

@@ -4,10 +4,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
-import basketBall from "../../assets/basketball.jpg"
-import golf from "../../assets/golf.jpg"
-import tennis from "../../assets/tennis.webp"
-
+import basketBall from "../../assets/basketball.jpg";
+import golf from "../../assets/golf.jpg";
+import tennis from "../../assets/tennis.webp";
 
 interface SlideData {
   id: number;
@@ -25,7 +24,7 @@ const slides: SlideData[] = [
   },
   {
     id: 2,
-    imageUrl:golf,
+    imageUrl: golf,
     title: "New Arrivals",
     description: "Check out our latest collection",
   },

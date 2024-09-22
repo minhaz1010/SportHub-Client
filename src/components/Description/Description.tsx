@@ -14,7 +14,7 @@ const Description: React.FC<Props> = ({ message }) => {
         alt="featured-image"
         className="md:w-[500px] md:h-[400px]  "
       />
-      <h3 className="md:text-7xl text-4xl  teko uppercase bg-[#eeeeec] animate-pulse p-11 rounded-xl">
+      <h3 className="md:text-6xl text-3xl  roboto-flex font-semibold uppercase bg-[#eeeeec] animate-pulse p-11 rounded-xl">
         {message}
       </h3>
     </section>

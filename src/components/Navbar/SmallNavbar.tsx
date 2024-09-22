@@ -18,7 +18,7 @@ function SmallNavBar() {
 
   return (
     <Sheet>
-      <div className="flex justify-between font-handjet items-center md:hidden p-4">
+      <div className="flex justify-between roboto-flex items-center md:hidden p-4">
         <Link to="/" className="text-orange-400 flex items-center">
           <img
             src="https://i.ibb.co.com/XpsJj2h/icon.png"
@@ -43,8 +43,7 @@ function SmallNavBar() {
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `text-xl duration-300 transition ease-in-out ${
-                    isActive ? "text-blue-500" : "hover:text-orange-500"
+                  `text-xl duration-300 transition ease-in-out ${isActive ? "text-blue-500" : "hover:text-orange-500"
                   }`
                 }
               >
@@ -63,8 +62,7 @@ function SmallNavBar() {
             <NavLink
               to="/cart"
               className={({ isActive }) =>
-                `text-xl duration-300 transition ease-in-out ${
-                  isActive ? "text-blue-500" : "hover:text-orange-500"
+                `text-xl duration-300 transition ease-in-out ${isActive ? "text-blue-500" : "hover:text-orange-500"
                 }`
               }
             >

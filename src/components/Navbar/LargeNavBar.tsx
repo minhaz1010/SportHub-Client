@@ -15,7 +15,7 @@ const LargeNavBar = () => {
   ];
 
   return (
-    <div className="mr-4 hidden gap-2 font-handjet md:flex justify-between items-center w-full my-3">
+    <div className="mr-4 hidden gap-2 roboto-flex md:flex justify-between items-center w-full my-3">
       <div className="ml-7">
         <Link to="/" className="">
           <img
@@ -31,8 +31,7 @@ const LargeNavBar = () => {
             key={item.path}
             to={item.path}
             className={({ isActive }) =>
-              `text-xl duration-300 delay-100 transition-shadow ease-in-out ${
-                isActive ? "text-blue-500" : "hover:text-blue-500"
+              `text-xl duration-300 delay-100 transition-shadow ease-in-out ${isActive ? "text-blue-500" : "hover:text-blue-500"
               }`
             }
           >
@@ -49,8 +48,7 @@ const LargeNavBar = () => {
         <NavLink
           to="/cart"
           className={({ isActive }) =>
-            `text-xl duration-300 delay-100 transition ease-in-out ${
-              isActive ? "text-blue-500" : "hover:text-blue-500"
+            `text-xl duration-300 delay-100 transition ease-in-out ${isActive ? "text-blue-500" : "hover:text-blue-500"
             }`
           }
         >

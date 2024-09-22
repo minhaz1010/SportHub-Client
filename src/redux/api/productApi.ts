@@ -17,19 +17,71 @@ const transformErrorResponse = (response: TError): TResponse => ({
 const transformSuccessResponse = <T>(response: TData<T>) => ({
   data: {
     success: response.success,
+    totalItem:response.totalItem,
     statusCode: response.statusCode,
     message: response.message,
     data: response.data,
   },
 });
 
+// expor type TQuery = {
+//   searchTerm: string;
+//   sort: string;
+//   limit: number;
+//   page: number
+// }
+
+
+export interface IQueryParams {
+  rating?: number;
+  minPrice?: number;
+  maxPrice?: number;
+  brand?: string;
+  category?: string;
+  page?: number;
+  limit?: number;
+  sort?: string;
+  search?: string;
+}
+
+
 export const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllProducts: builder.query({
-      query: () => {
+      query: (query: IQueryParams) => {
+        console.log("query from api",query)
+        const params = new URLSearchParams();
+        if (query?.search) {
+          params.append('search', query.search)
+        }
+        if(query.limit){
+          params.append('limit',query.limit.toString())
+        }
+        if(query.page){
+          params.append('page',query.page.toString())
+        }
+        if(query?.category){
+          params.append('category',query.category);
+        }
+        if(query?.rating){
+          params.append('rating',query.rating.toString())
+        }
+        if (query.sort) {
+          params.append('sort', query.sort)
+        }
+        if (query.minPrice) {
+          params.append('minPrice', query.minPrice.toString())
+        }
+        if (query.maxPrice) {
+          params.append('maxPrice', query.maxPrice.toString())
+        }
+        if (query.brand) {
+          params.append('brand', query.brand)
+        }
         return {
           url: "/products",
           method: "GET",
+          params
         };
       },
       transformResponse: (response: TData<any>) =>

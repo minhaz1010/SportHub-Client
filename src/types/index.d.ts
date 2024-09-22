@@ -1,5 +1,5 @@
 export interface IProduct {
-  _id:string;
+  _id: string;
   name: string;
   category: string;
   stock: number;
@@ -10,28 +10,29 @@ export interface IProduct {
   image: string;
 }
 
-export type TError ={
-  data:{
-    success:boolean;
-    message:string;
-    errorMessages?:[
+export type TError = {
+  data: {
+    success: boolean;
+    message: string;
+    errorMessages?: [
       {
-        path:string,
-        message:string
-      }
-    ]
-  },
-  status:number
-}
+        path: string;
+        message: string;
+      },
+    ];
+  };
+  status: number;
+};
 
-export type TData<T> ={
-  success:boolean;
-  statusCode:number;
-  message:string;
-  data?:T | T[]
-}
+export type TData<T> = {
+  success: boolean;
+  totalItem: number;
+  statusCode: number;
+  message: string;
+  data?: T | T[];
+};
 
-export type TResponse ={
-  error?:TError;
-  data?:TData;
-}
+export type TResponse = {
+  error?: TError;
+  data?: TData;
+};

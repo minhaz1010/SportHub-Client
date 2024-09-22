@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link';
 
 const categories = [
   { label: "Basketball", emoji: "🏀" },
@@ -17,8 +17,8 @@ const FeaturedCategories: React.FC = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3  gap-8">
           {categories.map((category) => (
             <Link
-              to="all-products"
-              className="flex flex-col items-center p-4 h-48 justify-center teko bg-white shadow-lg rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out"
+              to="all-products#top-page"
+              className="flex flex-col items-center p-4 h-48 justify-center roboto-flex  bg-white shadow-lg rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out"
             >
               <span className="text-5xl md:text-7xl mb-2">
                 {category.emoji}

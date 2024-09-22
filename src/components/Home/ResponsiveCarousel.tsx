@@ -57,13 +57,13 @@ const ResponsiveCarousel: React.FC = () => {
           <div className="absolute inset-5  flex items-center justify-center">
             <Card className="md:w-[800px]   w-[600px] teko ">
               <CardContent className="p-6 ">
-                <h2 className="text-5xl md:text-7xl  mb-2">{slide.title}</h2>
+                <h2 className="text-5xl md:text-7xl   mb-2">{slide.title}</h2>
                 <p className="text-2xl md:text-3xl">{slide.description}</p>
                 <Button
                   variant="default"
                   className="mt-5 text-2xl bg-sky-500 hover:bg-sky-800 py-6"
                 >
-                  <Link to="/all-products">All Products</Link>
+                  <Link to="/all-products#top-page">All Products</Link>
                 </Button>
               </CardContent>
             </Card>

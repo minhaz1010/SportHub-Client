@@ -13,12 +13,29 @@ import "@smastrom/react-rating/style.css";
 import { ShoppingCart } from "lucide-react";
 import { IProduct } from "@/types";
 import LazyImage from "./LazyLoadImage";
+import { Link } from "react-router-dom";
+import { addItemToCart, TCartItem } from "@/redux/features/cartSlice";
+import { toast } from "sonner";
+import { useAppDispatch } from "@/redux/hook";
 
 interface ProductCardProps {
   product: IProduct;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const dispatch = useAppDispatch();
+  const handleAddToCart = () => {
+    const cartItem: TCartItem = {
+      id: product._id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      stock: product.stock,
+      image: product.image
+    };
+    toast.success("Product Added Successfully", { position: "top-center", duration: 1000 })
+    dispatch(addItemToCart(cartItem));
+  };
   return (
     <Card className="w-full teko  mx-auto overflow-hidden shadow-xl     hover:shadow-2xl transition-shadow duration-300 ease-in-out">
       <CardHeader className="p-0 relative ">
@@ -57,9 +74,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <CardFooter className="p-4 bg-gray-50 ">
         <div className="w-full flex justify-between items-center">
           <Button className="bg-teal-700 hover:bg-teal-900 text-xl  text-white">
-            View Details
+            <Link to={`/products/${product.slug}`}>
+              View Details
+            </Link>
           </Button>
           <Button
+            onClick={() => handleAddToCart()}
             className="bg-teal-700  hover:bg-teal-900 text-xl flex justify-center items-center text-white"
             disabled={product.stock === 0}
           >

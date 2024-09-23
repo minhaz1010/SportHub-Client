@@ -122,7 +122,7 @@ const AllProducts: React.FC = () => {
   };
 
   return (
-    <div className="top-page container mx-auto px-4 py-8">
+    <div className=" container mx-auto px-4 py-8" id='top-page'>
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Filters Section */}
         <div className="w-full lg:w-1/4 space-y-6 roboto-flex">

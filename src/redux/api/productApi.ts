@@ -24,12 +24,7 @@ const transformSuccessResponse = <T>(response: TData<T>) => ({
   },
 });
 
-// expor type TQuery = {
-//   searchTerm: string;
-//   sort: string;
-//   limit: number;
-//   page: number
-// }
+
 
 
 export interface IQueryParams {
@@ -49,7 +44,6 @@ export const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       query: (query: IQueryParams) => {
-        console.log("query from api",query)
         const params = new URLSearchParams();
         if (query?.search) {
           params.append('search', query.search)
@@ -87,7 +81,17 @@ export const productApi = baseApi.injectEndpoints({
       transformResponse: (response: TData<any>) =>
         transformSuccessResponse(response),
     }),
+    getSingleProductBySlug:builder.query({
+      query:(slug:string) =>{
+        return {
+          url:`/products/${slug}`,
+          method:"GET"
+        }
+      },
+        transformResponse: (response: TData<any>) =>
+        transformSuccessResponse(response),
+    })
   }),
 });
 
-export const { useGetAllProductsQuery } = productApi;
+export const { useGetAllProductsQuery,useGetSingleProductBySlugQuery } = productApi;

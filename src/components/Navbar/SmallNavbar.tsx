@@ -1,13 +1,16 @@
-import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu as MenuIcon } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+import { useAppSelector } from "@/redux/hook";
 
 function SmallNavBar() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [cartCount, setCartCount] = useState(0);
+  const cartItems = useAppSelector((state) => state.cart.items);
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -74,7 +77,7 @@ function SmallNavBar() {
                   <FaShoppingCart className="mr-2" />
 
                   <span className="ml-1 bg-black  text-white px-3 py-2 rounded-full ">
-                    {cartCount}
+                    {totalItems}
                   </span>
                 </Button>
               )}

@@ -1,11 +1,13 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+import { useAppSelector } from "@/redux/hook";
 
 const LargeNavBar = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [cartCount, setCartCount] = useState(0);
+  const cartItems = useAppSelector((state) => state.cart.items);
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -15,7 +17,7 @@ const LargeNavBar = () => {
   ];
 
   return (
-    <div className="mr-4 hidden gap-2 roboto-flex md:flex justify-between items-center w-full my-3">
+    <div className="mr-4 hidden gap-2 roboto-flex h-[120px]  md:flex justify-between items-center w-full my-3">
       <div className="ml-7">
         <Link to="/" className="">
           <img
@@ -59,7 +61,7 @@ const LargeNavBar = () => {
             >
               <FaShoppingCart className="mr-2" />
               <span className="ml-1 bg-black text-white rounded-full px-3 py-2 ">
-                {cartCount}
+                {totalItems}
               </span>
             </Button>
           )}

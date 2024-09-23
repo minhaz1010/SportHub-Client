@@ -12,8 +12,7 @@ const Cart = () => {
   const handleQuantityChange = (id: string, newQuantity: number) => {
 
     if (newQuantity > 0) {
-      toast.success("Product updated successfully", { position: "top-center", duration: 1000 })
-
+      toast.success("Cart updated successfully", { position: "top-center", duration: 1000 })
       dispatch(updateItemQuantity({ id, quantity: newQuantity }));
     }
   };
@@ -26,7 +25,7 @@ const Cart = () => {
 
   const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   const shippingFee = 19;
-  const vatRate = 0.05;
+  const vatRate = 0.15;
   const vat = subtotal * vatRate;
   const total = subtotal + shippingFee + vat;
 
@@ -34,7 +33,7 @@ const Cart = () => {
     return (
       <div className="container mx-auto my-10 roboto-flex h-[calc(100vh-120px)] px-4 text-center flex justify-center items-center flex-col">
         <h2 className="text-5xl font-bold mb-4">Your cart is empty 😰</h2>
-        <Link to="/" className="text-blue-600 text-xl hover:underline">Continue Shopping ❤️‍🔥</Link>
+        <Link to="/" className="text-blue-600 text-2xl hover:underline">Continue Shopping ❤️‍🔥</Link>
       </div>
     );
   }
@@ -79,7 +78,7 @@ const Cart = () => {
                 <span>${shippingFee.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span>VAT (5%)</span>
+                <span>VAT (15%)</span>
                 <span>${vat.toFixed(2)}</span>
               </div>
               <div className="border-t pt-2 mt-2">
@@ -90,7 +89,7 @@ const Cart = () => {
               </div>
             </div>
             <Button className="w-full mt-6 bg-blue-600 text-white">
-              Proceed to Checkout
+              <Link to="/checkout">  Proceed to Checkout</Link>
             </Button>
           </div>
         </div>

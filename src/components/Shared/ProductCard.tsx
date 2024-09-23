@@ -31,9 +31,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       price: product.price,
       quantity: 1,
       stock: product.stock,
-      image: product.image
+      image: product.image,
     };
-    toast.success("Product Added Successfully", { position: "top-center", duration: 1000 })
+    toast.success("Product Added Successfully", {
+      position: "top-center",
+      duration: 1000,
+    });
     dispatch(addItemToCart(cartItem));
   };
   return (
@@ -74,9 +77,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <CardFooter className="p-4 bg-gray-50 ">
         <div className="w-full flex justify-between items-center">
           <Button className="bg-teal-700 hover:bg-teal-900 text-xl  text-white">
-            <Link to={`/products/${product.slug}`}>
-              View Details
-            </Link>
+            <Link to={`/products/${product.slug}`}>View Details</Link>
           </Button>
           <Button
             onClick={() => handleAddToCart()}

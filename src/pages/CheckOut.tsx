@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Button } from '@/components/ui/button';
-import { useAppSelector } from '@/redux/hook';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Button } from "@/components/ui/button";
+import { useAppSelector } from "@/redux/hook";
+import { useNavigate } from "react-router-dom";
 
 interface FormData {
   firstName: string;
@@ -17,17 +17,20 @@ interface FormData {
 
 const CheckOut: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    address: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
   });
   const [formErrors, setFormErrors] = useState<Partial<FormData>>({});
   const navigate = useNavigate();
 
   const cartItems = useAppSelector((state) => state.cart.items);
-  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const subtotal = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  );
   const shippingFee = 19;
   const vatRate = 0.15;
   const vat = subtotal * vatRate;
@@ -36,7 +39,7 @@ const CheckOut: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setFormErrors((prev) => ({ ...prev, [name]: '' }));
+    setFormErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateForm = (): boolean => {
@@ -45,13 +48,13 @@ const CheckOut: React.FC = () => {
 
     Object.entries(formData).forEach(([key, value]) => {
       if (!value.trim()) {
-        errors[key as keyof FormData] = 'This field is required';
+        errors[key as keyof FormData] = "This field is required";
         isValid = false;
       }
     });
 
     if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      errors.email = 'Invalid email format';
+      errors.email = "Invalid email format";
       isValid = false;
     }
 
@@ -62,7 +65,7 @@ const CheckOut: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
-      navigate('/successful');
+      navigate("/successful");
     }
   };
 
@@ -75,7 +78,9 @@ const CheckOut: React.FC = () => {
             <CardTitle>Shipping Address</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-gray-500 mb-4">Fill in the form below to complete your purchase</p>
+            <p className="text-sm text-gray-500 mb-4">
+              Fill in the form below to complete your purchase
+            </p>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -88,7 +93,11 @@ const CheckOut: React.FC = () => {
                     value={formData.firstName}
                     onChange={handleInputChange}
                   />
-                  {formErrors.firstName && <p className="text-red-500 text-sm mt-1">{formErrors.firstName}</p>}
+                  {formErrors.firstName && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.firstName}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <Label htmlFor="lastName">Last Name</Label>
@@ -100,7 +109,11 @@ const CheckOut: React.FC = () => {
                     value={formData.lastName}
                     onChange={handleInputChange}
                   />
-                  {formErrors.lastName && <p className="text-red-500 text-sm mt-1">{formErrors.lastName}</p>}
+                  {formErrors.lastName && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.lastName}
+                    </p>
+                  )}
                 </div>
               </div>
               <div>
@@ -114,7 +127,11 @@ const CheckOut: React.FC = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                 />
-                {formErrors.email && <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>}
+                {formErrors.email && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {formErrors.email}
+                  </p>
+                )}
               </div>
               <div>
                 <Label htmlFor="phone">Phone</Label>
@@ -127,7 +144,11 @@ const CheckOut: React.FC = () => {
                   value={formData.phone}
                   onChange={handleInputChange}
                 />
-                {formErrors.phone && <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>}
+                {formErrors.phone && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {formErrors.phone}
+                  </p>
+                )}
               </div>
               <div>
                 <Label htmlFor="address">Address</Label>
@@ -139,11 +160,17 @@ const CheckOut: React.FC = () => {
                   value={formData.address}
                   onChange={handleInputChange}
                 />
-                {formErrors.address && <p className="text-red-500 text-sm mt-1">{formErrors.address}</p>}
+                {formErrors.address && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {formErrors.address}
+                  </p>
+                )}
               </div>
 
               <div className="mt-6">
-                <h3 className="text-lg font-semibold mb-2">Payment Information</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  Payment Information
+                </h3>
                 <RadioGroup defaultValue="cash">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="cash" id="cash" />
@@ -151,7 +178,9 @@ const CheckOut: React.FC = () => {
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="stripe" id="stripe" disabled />
-                    <Label htmlFor="stripe" className="text-gray-400">Stripe (Not available)</Label>
+                    <Label htmlFor="stripe" className="text-gray-400">
+                      Stripe (Not available)
+                    </Label>
                   </div>
                 </RadioGroup>
               </div>

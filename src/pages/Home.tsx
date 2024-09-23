@@ -9,7 +9,7 @@ function Home() {
       <ResponsiveCarousel />
       <Description message="featured categories" />
       <FeaturedCategories />
-      <FeaturedProducts/>
+      <FeaturedProducts />
     </div>
   );
 }

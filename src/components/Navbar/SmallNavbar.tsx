@@ -8,9 +8,10 @@ import { useAppSelector } from "@/redux/hook";
 function SmallNavBar() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const cartItems = useAppSelector((state) => state.cart.items);
-  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-
-
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  );
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -46,7 +47,8 @@ function SmallNavBar() {
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `text-xl duration-300 transition ease-in-out ${isActive ? "text-blue-500" : "hover:text-orange-500"
+                  `text-xl duration-300 transition ease-in-out ${
+                    isActive ? "text-blue-500" : "hover:text-orange-500"
                   }`
                 }
               >
@@ -65,7 +67,8 @@ function SmallNavBar() {
             <NavLink
               to="/cart"
               className={({ isActive }) =>
-                `text-xl duration-300 transition ease-in-out ${isActive ? "text-blue-500" : "hover:text-orange-500"
+                `text-xl duration-300 transition ease-in-out ${
+                  isActive ? "text-blue-500" : "hover:text-orange-500"
                 }`
               }
             >

@@ -38,7 +38,7 @@ function SmallNavBar() {
 
       <SheetContent
         side="right"
-        className="transition duration-1000 font-handjet bg-[#EDEADE]"
+        className="transition duration-1000 roboto-flex  bg-[#EDEADE]"
       >
         <nav className="flex flex-col items-start p-4 space-y-5 ">
           {navItems.map((item) => (

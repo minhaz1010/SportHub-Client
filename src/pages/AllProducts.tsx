@@ -45,6 +45,8 @@ const AllProducts: React.FC = () => {
     pollingInterval: 30 * 1000,
   });
 
+
+
   const products: IProduct[] = data?.data?.data || [];
   const totalPages =
     Math.ceil((data?.data.totalItem as number) / queryParams.limit) || 1;
@@ -63,6 +65,10 @@ const AllProducts: React.FC = () => {
       setBrands(uniqueBrands);
     }
   }, [products]);
+
+  if (isLoading || isError) {
+    return <Loading />
+  }
 
   const handlePageChange = (newPage: number) => {
     setQueryParams((prev) => ({
@@ -284,10 +290,8 @@ const AllProducts: React.FC = () => {
         {/* Products Grid */}
 
         <div className="w-full lg:w-3/4">
-          {isLoading && <Loading />}
-          {isError && (
-            <p className="text-4xl text-red-600">Some Error Occured</p>
-          )}
+          {isLoading || isError && <Loading />}
+
           {products.length ? (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -296,13 +300,12 @@ const AllProducts: React.FC = () => {
                 ))}
               </div>
 
-              {/* Pagination Controls */}
-              <div className="flex justify-center mt-6">
+              <div className="flex roboto-flex justify-center mt-6">
                 <Button
                   variant="outline"
                   onClick={() => handlePageChange(queryParams.page - 1)}
                   disabled={queryParams.page === 1}
-                  className="mr-2"
+                  className="mr-2 text-xl"
                 >
                   Previous
                 </Button>
@@ -315,7 +318,7 @@ const AllProducts: React.FC = () => {
                         queryParams.page === index + 1 ? "default" : "outline"
                       }
                       onClick={() => handlePageChange(index + 1)}
-                      className="mx-1"
+                      className="mx-1 text-xl"
                     >
                       {index + 1}
                     </Button>

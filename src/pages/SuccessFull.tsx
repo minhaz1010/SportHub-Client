@@ -16,12 +16,6 @@ const SuccessFull: React.FC = () => {
             Payment Successful!
           </h1>
           <p className="text-gray-600 mb-6">Thank you for your purchase.</p>
-          <div className="bg-gray-50 rounded-lg p-4 mb-6">
-            <p className="text-sm text-gray-600">
-              We've sent a confirmation email with your order details and
-              tracking information.
-            </p>
-          </div>
           <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition duration-200 ease-in-out transform hover:scale-105">
             <ShoppingBag className="mr-2 h-5 w-5" />
             <Link to={"/all-products#top-page"}> Continue Shopping</Link>

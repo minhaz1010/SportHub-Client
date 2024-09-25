@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type TCartItem = {
   id: string;
-  slug: string;
+  slug?: string;
   name: string;
   price: number;
   quantity: number;

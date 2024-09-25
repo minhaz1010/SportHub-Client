@@ -1,50 +1,66 @@
-# React + TypeScript + Vite
+# Sporting Goods E-Commerce Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack sport-e-commerce web application built with **React**, **TypeScript**, **Node.js**, **Express.js**, **MongoDB**, and **Mongoose**. This platform allows users to browse, filter, and purchase sporting goods.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Pages Overview](#pages-overview)
+- [Backend API](#backend-api)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+### Core Features
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **Single Role User**: A single user role that can manage products.
+2. **Responsive Navbar and Footer**:
+   - Navbar with navigation links and logo.
+   - Footer with social media icons and important page links.
+3. **Homepage**:
+   - Hero section with a carousel for showcasing promotions and discounts.
+   - Featured products section with details like product name, category, brand, stock, rating, price, and image.
+4. **All Products Page**:
+   - Display all products with search, filter (category, price, rating, brand), and sort functionality.
+   - Clear filters option.
+5. **Single Product Page**:
+   - Detailed view of the product with an option to add to cart.
+6. **Cart Page**:
+   - View all items in the cart, update quantities, remove items, and proceed to checkout.
+7. **Checkout Page**:
+   - Collect user details and choose between Cash on Delivery or Stripe payment(optional).
+8. **Manage Products**:
+   - User can add, update, and delete products using a form with pre-filled data for updates.
+9. **Backend Integration**:
+   - The backend handles all business logic with MongoDB for database management.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Extra Features
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **RTK Query Polling**: Show the latest products after every 30 seconds on the homepage.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+## Technologies Used
+
+### Frontend
+
+- **React**: For building the user interface.
+- **TypeScript**: Type-safe code for better development experience.
+- **Tailwind CSS**: Utility-first CSS for styling.
+- **React-Rating**: A third-party package to display product ratings.
+- **EmailJS**: For sending contact form submissions via email.
+- **React-Responsive-Carousel**: For the homepage hero section.
+- **React-Photo-View** (optional): For viewing product images in a lightbox.
+- **Redux Toolkit (RTK Query)**: For managing global state and handling API requests.
+
+### Backend
+
+- **Node.js**
+- **Zod**
+- **Express.js**
+- **TypeScript**
+- **MongoDB & Mongoose**
+- **repo** [Backend-Repository](https://github.com/minhaz1010/Sporthub-Server.git)
+
+
+

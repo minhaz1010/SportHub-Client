@@ -25,6 +25,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.cart.items);
+  const [quantity, setQuantity] = useState<number>(0);
   const [isInCart, setIsInCart] = useState<boolean>(false);
 
   useEffect(() => {
@@ -32,15 +33,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     setIsInCart(!!itemInCart);
   }, [cartItems, product._id]);
   const handleAddToCart = () => {
+    const updatedQuantity = quantity + 1;
     const cartItem: TCartItem = {
       id: product._id,
       slug: product.slug,
       name: product.name,
       price: product.price,
-      quantity: 1,
+      quantity: updatedQuantity,
       stock: product.stock,
       image: product.image,
     };
+    setQuantity(updatedQuantity);
     toast.success("Product Added Successfully", {
       position: "top-center",
       duration: 1000,

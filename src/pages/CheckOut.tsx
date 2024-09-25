@@ -33,7 +33,6 @@ const CheckOut: React.FC = () => {
   const navigate = useNavigate();
 
   const cartItems = useAppSelector((state) => state.cart.items);
-  console.log(cartItems, "cart itmes");
   const subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0,
@@ -76,7 +75,7 @@ const CheckOut: React.FC = () => {
       cartItems.forEach(async (cartItem) => {
         const newQuantity = {
           _id: cartItem.id,
-          stock: cartItem.stock,
+          stock: (cartItem.stock + 1) - cartItem.quantity,
         };
         try {
           const data = await sendData(newQuantity);
@@ -86,6 +85,7 @@ const CheckOut: React.FC = () => {
               position: "top-center",
               duration: 1000,
             });
+            navigate("/successful");
           }
         } catch (error) {
           toast.error("Something Unexpected Happened", {
@@ -95,7 +95,6 @@ const CheckOut: React.FC = () => {
         }
       });
 
-      navigate("/successful");
     }
   };
 

@@ -1,15 +1,19 @@
-import { useState } from 'react';
-import { useDeleteAProductMutation, useGetAllProductsWithoutQueryQuery } from "@/redux/api/productApi";
-import { IProduct, TError } from '@/types';
-import Loading from '@/components/Shared/Loading';
-import ProductTable from '@/components/ManageProducts/ProductTable';
-import EditProductDialog from '@/components/ManageProducts/EditProductDialog';
-import AddProductDialog from '@/components/ManageProducts/AddProductDialog';
+import { useState } from "react";
+import {
+  useDeleteAProductMutation,
+  useGetAllProductsWithoutQueryQuery,
+} from "@/redux/api/productApi";
+import { IProduct, TError } from "@/types";
+import Loading from "@/components/Shared/Loading";
+import ProductTable from "@/components/ManageProducts/ProductTable";
+import EditProductDialog from "@/components/ManageProducts/EditProductDialog";
+import AddProductDialog from "@/components/ManageProducts/AddProductDialog";
 import { Button } from "@/components/ui/button";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 
 function ManageProducts() {
-  const { data, isLoading, isError } = useGetAllProductsWithoutQueryQuery(undefined);
+  const { data, isLoading, isError } =
+    useGetAllProductsWithoutQueryQuery(undefined);
   const [deleteProduct] = useDeleteAProductMutation();
   const [editingProduct, setEditingProduct] = useState<IProduct | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -31,15 +35,20 @@ function ManageProducts() {
       if (data.data.success) {
         toast.success("Product deleted successfully", {
           position: "top-center",
-          duration: 1000
+          duration: 1000,
         });
       }
     } catch (error) {
-      const newError = error?.error as TError;
-      const errorMessage = newError.data.message;
+      let errorMessage = "An unexpected error occurred";
+      if (error && typeof error === "object") {
+        const newError = error as TError;
+        if (newError.data && newError.data.message) {
+          errorMessage = newError.data.message;
+        }
+      }
       toast.error(errorMessage, {
         position: "top-center",
-        duration: 1000
+        duration: 1000,
       });
     }
   };
@@ -54,7 +63,11 @@ function ManageProducts() {
         <h1 className="text-4xl font-semibold">Manage Products</h1>
         <Button onClick={handleAddProduct}>Add Product</Button>
       </div>
-      <ProductTable products={products} onEdit={handleEdit} onDelete={handleDelete} />
+      <ProductTable
+        products={products}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
       <EditProductDialog
         product={editingProduct}
         isOpen={isEditDialogOpen}

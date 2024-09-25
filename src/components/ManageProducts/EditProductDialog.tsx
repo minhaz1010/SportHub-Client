@@ -1,5 +1,10 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { IProduct } from '@/types';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { IProduct } from "@/types";
 import EditProductForm from "./EditProductForm";
 
 interface EditProductDialogProps {
@@ -8,14 +13,24 @@ interface EditProductDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-function EditProductDialog({ product, isOpen, onOpenChange }: EditProductDialogProps) {
+function EditProductDialog({
+  product,
+  isOpen,
+  onOpenChange,
+}: EditProductDialogProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent aria-description='Edit Product' className="sm:max-w-[425px]">
+      <DialogContent
+        aria-description="Edit Product"
+        className="sm:max-w-[425px]"
+      >
         <DialogHeader>
           <DialogTitle>Edit Product</DialogTitle>
         </DialogHeader>
-        <EditProductForm product={product} onClose={() => onOpenChange(false)} />
+        <EditProductForm
+          product={product}
+          onClose={() => onOpenChange(false)}
+        />
       </DialogContent>
     </Dialog>
   );

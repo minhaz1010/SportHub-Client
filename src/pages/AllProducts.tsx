@@ -41,7 +41,9 @@ const AllProducts: React.FC = () => {
     limit: 6,
   });
 
-  const { data, isLoading, isError } = useGetAllProductsQuery(queryParams);
+  const { data, isLoading, isError } = useGetAllProductsQuery(queryParams, {
+    pollingInterval: 30 * 1000,
+  });
 
   const products: IProduct[] = data?.data?.data || [];
   const totalPages =

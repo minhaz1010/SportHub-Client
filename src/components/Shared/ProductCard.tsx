@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -16,7 +16,7 @@ import LazyImage from "./LazyLoadImage";
 import { Link } from "react-router-dom";
 import { addItemToCart, TCartItem } from "@/redux/features/cartSlice";
 import { toast } from "sonner";
-import { useAppDispatch } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 
 interface ProductCardProps {
   product: IProduct;
@@ -24,9 +24,17 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const dispatch = useAppDispatch();
+  const cartItems = useAppSelector((state) => state.cart.items);
+  const [isInCart, setIsInCart] = useState<boolean>(false);
+
+  useEffect(() => {
+    const itemInCart = cartItems.find((item) => item.id === product._id);
+    setIsInCart(!!itemInCart);
+  }, [cartItems, product._id]);
   const handleAddToCart = () => {
     const cartItem: TCartItem = {
       id: product._id,
+      slug: product.slug,
       name: product.name,
       price: product.price,
       quantity: 1,
@@ -47,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {product.category}
         </Badge>
         <Badge
-          className={`text-lg absolute bg-teal-700 top-2 left-2 ${product.stock > 0 ? "text-white" : "text-red-600"}`}
+          className={`text-lg absolute bg-teal-700 top-2 left-2 ${product.stock > 0 ? "text-white" : "bg-red-500 text-white"}`}
         >
           {product.stock > 0 ? `In Stock: ${product.stock}` : "Out of Stock"}
         </Badge>
@@ -80,12 +88,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <Link to={`/products/${product.slug}`}>View Details</Link>
           </Button>
           <Button
-            onClick={() => handleAddToCart()}
-            className="bg-teal-700  hover:bg-teal-900 text-xl flex justify-center items-center text-white"
-            disabled={product.stock === 0}
+            onClick={handleAddToCart}
+            className={`bg-teal-700 hover:bg-teal-900 text-xl flex justify-center items-center text-white ${isInCart || product.stock === 0
+              ? "cursor-not-allowed"
+              : "cursor-pointer"
+              }`}
+            disabled={isInCart || product.stock === 0}
           >
             <ShoppingCart className="w-4 h-4 mr-2" />
-            Add to Cart
+            {isInCart ? "Already Added" : "Add to Cart"}
           </Button>
         </div>
       </CardFooter>

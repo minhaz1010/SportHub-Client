@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
-import { useAppSelector } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { useNavigate } from "react-router-dom";
+import { useUpdateAProductMutation } from "@/redux/api/productApi";
+import { toast } from "sonner";
+import { clearCart } from "@/redux/features/cartSlice";
 
 interface FormData {
   firstName: string;
@@ -24,9 +28,12 @@ const CheckOut: React.FC = () => {
     address: "",
   });
   const [formErrors, setFormErrors] = useState<Partial<FormData>>({});
+  const [sendData] = useUpdateAProductMutation();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const cartItems = useAppSelector((state) => state.cart.items);
+  console.log(cartItems, "cart itmes");
   const subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0,
@@ -62,9 +69,32 @@ const CheckOut: React.FC = () => {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (validateForm()) {
+      cartItems.forEach(async (cartItem) => {
+        const newQuantity = {
+          _id: cartItem.id,
+          stock: cartItem.stock,
+        };
+        try {
+          const data = await sendData(newQuantity);
+          if (data.data?.data.success) {
+            dispatch(clearCart());
+            toast.success("Your Order Has Placed Successfully", {
+              position: "top-center",
+              duration: 1000,
+            });
+          }
+        } catch (error) {
+          toast.error("Something Unexpected Happened", {
+            position: "top-center",
+            duration: 1000,
+          });
+        }
+      });
+
       navigate("/successful");
     }
   };

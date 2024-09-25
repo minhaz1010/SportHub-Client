@@ -8,13 +8,19 @@ import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useState } from "react";
 
 const Cart = () => {
   const cartItems = useAppSelector((state) => state.cart.items);
+  const [stock, setStock] = useState(false);
   const dispatch = useAppDispatch();
-
   const handleQuantityChange = (id: string, newQuantity: number) => {
     if (newQuantity > 0) {
+      cartItems.forEach((cartItem) => {
+        if (cartItem.quantity + 1 > cartItem.stock) {
+          setStock(true);
+        }
+      });
       toast.success("Cart updated successfully", {
         position: "top-center",
         duration: 1000,
@@ -64,8 +70,10 @@ const Cart = () => {
                 className="size-32 object-cover mr-4"
               />
               <div className="flex-grow">
-                <h3 className="font-semibold">{item.name}</h3>
-                <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                <h3 className="font-semibold text-xl">{item.name}</h3>
+                <p className="text-gray-600 text-lg">
+                  ${item.price.toFixed(2)}
+                </p>
                 <div className="flex items-center mt-2">
                   <button
                     onClick={() =>
@@ -73,16 +81,17 @@ const Cart = () => {
                     }
                     className="p-1"
                   >
-                    <Minus size={16} />
+                    <Minus size={24} />
                   </button>
-                  <span className="mx-2">{item.quantity}</span>
+                  <span className="mx-2 text-xl">{item.quantity}</span>
                   <button
                     onClick={() =>
                       handleQuantityChange(item.id, item.quantity + 1)
                     }
-                    className="p-1"
+                    className={stock ? "cursor-not-allowed" : undefined}
+                    disabled={stock}
                   >
-                    <Plus size={16} />
+                    <Plus size={24} />
                   </button>
                 </div>
               </div>

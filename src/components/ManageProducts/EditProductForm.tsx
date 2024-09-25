@@ -37,16 +37,25 @@ function EditProductForm({ product, onClose }: EditProductFormProps) {
           rating: Number(editingProduct.rating),
           stock: Number(editingProduct.stock),
           price: Number(editingProduct.price),
-        }
+        };
         const data = await sendData(neweditingProduct);
-        console.log(data.data)
-        if (data.data?.success) {
-          toast.success("Product Edited Successfully", { position: "top-center" });
+        if (data.data?.data.success) {
+          toast.success("Product Edited Successfully", {
+            position: "top-center",
+          });
         }
       } catch (error) {
-        const newError = error?.error as TError;
-        const message = newError.data.message;
-        toast.error(message, { position: "top-center" })
+        let errorMessage = "An unexpected error occurred";
+        if (error && typeof error === "object") {
+          const newError = error as TError;
+          if (newError.data && newError.data.message) {
+            errorMessage = newError.data.message;
+          }
+        }
+        toast.error(errorMessage, {
+          position: "top-center",
+          duration: 1000,
+        });
       }
       onClose();
     }

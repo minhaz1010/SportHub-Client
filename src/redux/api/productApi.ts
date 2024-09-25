@@ -152,5 +152,5 @@ export const {
   useGetAllProductsWithoutQueryQuery,
   useUpdateAProductMutation,
   useAddAProductMutation,
-  useDeleteAProductMutation
+  useDeleteAProductMutation,
 } = productApi;

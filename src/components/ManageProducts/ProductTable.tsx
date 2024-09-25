@@ -44,7 +44,10 @@ function ProductTable({ products, onEdit, onDelete }: ProductTableProps) {
                   <Button variant="outline" onClick={() => onEdit(product)}>
                     Edit
                   </Button>
-                  <Button variant="destructive" onClick={() => onDelete(product._id)}>
+                  <Button
+                    variant="destructive"
+                    onClick={() => onDelete(product._id)}
+                  >
                     Delete
                   </Button>
                 </div>

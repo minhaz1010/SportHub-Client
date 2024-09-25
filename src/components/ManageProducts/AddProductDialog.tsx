@@ -47,16 +47,26 @@ function AddProductDialog({ isOpen, onOpenChange }: AddProductDialogProps) {
   const [sendData] = useAddAProductMutation();
 
   const handleCreate = async () => {
-    // console.log("New Product Data:", newProduct);
     try {
       const data = await sendData(newProduct).unwrap();
       if (data.data.success) {
-        toast.success("Product created successfully");
+        toast.success("Product created successfully", {
+          position: "top-center",
+          duration: 1000
+        });
       }
     } catch (error) {
-      const newError = error?.error as TError;
-      const errorMessage = newError.data.message;
-      toast.error(errorMessage);
+      let errorMessage = "An unexpected error occurred";
+      if (error && typeof error === "object") {
+        const newError = error as TError;
+        if (newError.data && newError.data.message) {
+          errorMessage = newError.data.message;
+        }
+      }
+      toast.error(errorMessage, {
+        position: "top-center",
+        duration: 1000,
+      });
     }
 
     onOpenChange(false);

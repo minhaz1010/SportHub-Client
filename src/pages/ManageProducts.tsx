@@ -12,8 +12,9 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 function ManageProducts() {
+  const sort = "createdAt";
   const { data, isLoading, isError } =
-    useGetAllProductsWithoutQueryQuery(undefined);
+    useGetAllProductsWithoutQueryQuery(sort);
   const [deleteProduct] = useDeleteAProductMutation();
   const [editingProduct, setEditingProduct] = useState<IProduct | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -58,7 +59,7 @@ function ManageProducts() {
   };
 
   return (
-    <div className="container roboto-flex mx-auto px-4 py-8">
+    <div className="container min-h-[calc(100vh-120px)] roboto-flex mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-4xl font-semibold">Manage Products</h1>
         <Button onClick={handleAddProduct}>Add Product</Button>
